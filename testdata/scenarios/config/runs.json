@@ -1,0 +1,1 @@
+[["cfg", "--no-color"], ["cfg", "-v", "--no-color"], ["bad", "--no-color"], ["bad", "cfg", "--force", "--no-color"]]

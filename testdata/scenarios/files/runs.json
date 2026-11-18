@@ -1,0 +1,1 @@
+[["files", "--no-color"], ["files:expand", "files:list:a:b", "-v", "--no-color"], ["files:_hidden", "--no-color"], ["files:missing", "--force", "--no-color"]]

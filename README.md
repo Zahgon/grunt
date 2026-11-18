@@ -10,6 +10,40 @@
 
 Visit the [gruntjs.com](https://gruntjs.com/) website for all the things.
 
+### Go
+
+This repository is grunt 1.6.3 for gruntfiles written in Go: the module
+`github.com/gruntjs/grunt-go` (Go 1.27, standard library only). A gruntfile is a Go
+program that hands its body to `grunt.Main`, and behaves like `grunt` run by grunt-cli
+1.5.0 next to a `Gruntfile.js` with the same body:
+
+```go
+package main
+
+import (
+	"github.com/gruntjs/grunt-go"
+	"github.com/gruntjs/grunt-go/js"
+)
+
+func main() {
+	grunt.Main(func(g *grunt.Grunt) {
+		g.InitConfig(grunt.O("pkg", grunt.O("name", "demo")))
+		g.RegisterTask("default", "Say hello.", grunt.TaskFunc(func(t *grunt.Task) any {
+			g.Log.Writeln("Hello from " + js.ToString(g.Config.Get("pkg.name")))
+			return nil
+		}))
+	})
+}
+```
+
+`go run . build:dist --verbose` takes the same options and task arguments as `grunt`.
+The API is in the package documentation (`go doc github.com/gruntjs/grunt-go`). Template
+code runs on the JavaScript subset in [docs/template-js.md](docs/template-js.md), with the
+helpers in [docs/template-helpers.md](docs/template-helpers.md). What differs from the
+JavaScript version is listed in [MIGRATION.md](MIGRATION.md).
+
+Run the tests with `go test ./...`.
+
 ### Support
 
 We support the latest version with security and bug fixes. The previous versions are all end-of-life and will not receive any security or bug fixes.

@@ -1,0 +1,198 @@
+{
+ "config": [
+  {
+   "argv": [
+    "cfg",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Running \"cfg\" task\n\"src/demo/dist\"\n[1,2]\n\"DEMO\"\n\"dotted\"\n\"dotted\"\n\"src/<%= pkg.name %>\"\n{\"k\":[\"demo-x\",3]}\na\\.b\\.c a\\.b.c\n{\"deep\":\"demo!\"}\ncaught: Maximum call stack size exceeded\nVerifying properties pkg.name, missing.x exist in config...ERROR\n>> Unable to process task.\ncaught: Required config property \"missing.x\" missing.\n{\"name\":\"demo\",\"list\":[\"m\",2]}\n\nDone.\n"
+  },
+  {
+   "argv": [
+    "cfg",
+    "-v",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Initializing\nCommand-line options: --verbose, --no-color, --gruntfile=<dir>/Gruntfile.js\n\nReading \"Gruntfile.js\" Gruntfile...OK\n\nRegistering Gruntfile tasks.\nInitializing config...OK\nLoading \"Gruntfile.js\" tasks...OK\n+ bad, cfg\n\nRunning tasks: cfg\n\nRunning \"cfg\" task\n\"src/demo/dist\"\n[1,2]\n\"DEMO\"\n\"dotted\"\n\"dotted\"\n\"src/<%= pkg.name %>\"\n{\"k\":[\"demo-x\",3]}\na\\.b\\.c a\\.b.c\n{\"deep\":\"demo!\"}\ncaught: Maximum call stack size exceeded\nVerifying properties pkg.name, missing.x exist in config...ERROR\n>> Unable to process task.\ncaught: Required config property \"missing.x\" missing.\n{\"name\":\"demo\",\"list\":[\"m\",2]}\n\nDone.\n"
+  },
+  {
+   "argv": [
+    "bad",
+    "--no-color"
+   ],
+   "code": 4,
+   "out": "Running \"bad\" task\nWarning: An error occurred while processing a template (nope is not defined). Use --force to continue.\n\nAborted due to warnings.\n"
+  },
+  {
+   "argv": [
+    "bad",
+    "cfg",
+    "--force",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Running \"bad\" task\nWarning: An error occurred while processing a template (nope is not defined). Used --force, continuing.\ngot \"<%= nope %>\"\n\nRunning \"cfg\" task\n\"src/demo/dist\"\n[1,2]\n\"DEMO\"\n\"dotted\"\n\"dotted\"\n\"src/<%= pkg.name %>\"\n{\"k\":[\"demo-x\",3]}\na\\.b\\.c a\\.b.c\n{\"deep\":\"demo!\"}\ncaught: Maximum call stack size exceeded\nVerifying properties pkg.name, missing.x exist in config...ERROR\n>> Unable to process task.\ncaught: Required config property \"missing.x\" missing.\n{\"name\":\"demo\",\"list\":[\"m\",2]}\n\nDone, but with warnings.\n"
+  }
+ ],
+ "fail": [
+  {
+   "argv": [
+    "warn",
+    "--no-color"
+   ],
+   "code": 9,
+   "out": "Running \"warn\" task\nbefore\nWarning: careful Use --force to continue.\n\nAborted due to warnings.\n"
+  },
+  {
+   "argv": [
+    "warn",
+    "errors",
+    "--force",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Running \"warn\" task\nbefore\nWarning: careful Used --force, continuing.\nafter\n\nRunning \"errors\" task\n>> one\nERROR\ncount 2\n\nDone, but with warnings.\n"
+  },
+  {
+   "argv": [
+    "fatal",
+    "--no-color"
+   ],
+   "code": 7,
+   "out": "Running \"fatal\" task\nFatal error: dead\n"
+  },
+  {
+   "argv": [
+    "--no-color"
+   ],
+   "code": 3,
+   "out": "Warning: Task \"default\" not found. Use --force to continue.\n\nAborted due to warnings.\n"
+  },
+  {
+   "argv": [
+    "errors",
+    "--no-color",
+    "--stack"
+   ],
+   "code": 0,
+   "out": "Running \"errors\" task\n>> one\nERROR\ncount 2\n\nDone.\n"
+  }
+ ],
+ "files": [
+  {
+   "argv": [
+    "files",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Running \"files:compact\" (files) task\ntarget compact {\"sep\":\";\",\"z\":0}\n{\"src\":[\"src/a.js\"],\"dest\":\"out/bundle.js\",\"orig\":{\"src\":[\"src/*.js\",\"!src/b.js\"],\"dest\":\"out/bundle.js\",\"extra\":1}}\nfilesSrc [\"src/a.js\"]\n\nRunning \"files:object\" (files) task\ntarget object {\"sep\":\";\",\"z\":0}\n{\"src\":[\"src/a.js\",\"src/b.js\",\"src/sub/d.js\"],\"dest\":\"out/bundle.min.js\",\"orig\":{\"src\":[\"src/**/*.js\"],\"dest\":\"out/bundle.min.js\"}}\n{\"src\":[\"src/c.css\"],\"dest\":\"out/css\",\"orig\":{\"src\":[\"src/*.css\"],\"dest\":\"out/css\"}}\nfilesSrc [\"src/a.js\",\"src/b.js\",\"src/sub/d.js\",\"src/c.css\"]\n\nRunning \"files:array\" (files) task\ntarget array {\"sep\":\";\",\"z\":0}\n{\"src\":[\"src/sub/d.js\",\"src/sub/e.txt\"],\"dest\":\"out/sub/\",\"orig\":{\"src\":[\"src/sub/*\"],\"dest\":\"out/sub/\"}}\n{\"src\":[\"src/a.js\"],\"dest\":\"out/x\",\"orig\":{\"src\":[\"src/a.js\",[\"src/missing.js\"]],\"dest\":\"out/x\"}}\n{\"dest\":\"out/nosrc\",\"orig\":{\"dest\":\"out/nosrc\"}}\nfilesSrc [\"src/sub/d.js\",\"src/sub/e.txt\",\"src/a.js\",null]\n\nRunning \"files:expand\" (files) task\ntarget expand {\"sep\":\";\",\"z\":0,\"flag\":true}\n{\"src\":[\"src/a.js\"],\"dest\":\"out/exp/a.min.js\",\"orig\":{\"expand\":true,\"cwd\":\"src/\",\"src\":[\"**/*.js\"],\"dest\":\"out/exp/\",\"ext\":\".min.js\"}}\n{\"src\":[\"src/b.js\"],\"dest\":\"out/exp/b.min.js\",\"orig\":{\"expand\":true,\"cwd\":\"src/\",\"src\":[\"**/*.js\"],\"dest\":\"out/exp/\",\"ext\":\".min.js\"}}\n{\"src\":[\"src/sub/d.js\"],\"dest\":\"out/exp/sub/d.min.js\",\"orig\":{\"expand\":true,\"cwd\":\"src/\",\"src\":[\"**/*.js\"],\"dest\":\"out/exp/\",\"ext\":\".min.js\"}}\nfilesSrc [\"src/a.js\",\"src/b.js\",\"src/sub/d.js\"]\n\nRunning \"files:flat\" (files) task\ntarget flat {\"sep\":\";\",\"z\":0}\n{\"src\":[\"src/a.js\"],\"dest\":\"out/flat/a.x\",\"orig\":{\"expand\":true,\"cwd\":\"src\",\"src\":[\"**/*\"],\"dest\":\"out/flat\",\"flatten\":true,\"filter\":\"isFile\",\"extDot\":\"last\",\"ext\":\".x\"}}\n{\"src\":[\"src/b.js\"],\"dest\":\"out/flat/b.x\",\"orig\":{\"expand\":true,\"cwd\":\"src\",\"src\":[\"**/*\"],\"dest\":\"out/flat\",\"flatten\":true,\"filter\":\"isFile\",\"extDot\":\"last\",\"ext\":\".x\"}}\n{\"src\":[\"src/c.css\"],\"dest\":\"out/flat/c.x\",\"orig\":{\"expand\":true,\"cwd\":\"src\",\"src\":[\"**/*\"],\"dest\":\"out/flat\",\"flatten\":true,\"filter\":\"isFile\",\"extDot\":\"last\",\"ext\":\".x\"}}\n{\"src\":[\"src/sub/d.js\"],\"dest\":\"out/flat/d.x\",\"orig\":{\"expand\":true,\"cwd\":\"src\",\"src\":[\"**/*\"],\"dest\":\"out/flat\",\"flatten\":true,\"filter\":\"isFile\",\"extDot\":\"last\",\"ext\":\".x\"}}\n{\"src\":[\"src/sub/e.txt\"],\"dest\":\"out/flat/e.x\",\"orig\":{\"expand\":true,\"cwd\":\"src\",\"src\":[\"**/*\"],\"dest\":\"out/flat\",\"flatten\":true,\"filter\":\"isFile\",\"extDot\":\"last\",\"ext\":\".x\"}}\nfilesSrc [\"src/a.js\",\"src/b.js\",\"src/c.css\",\"src/sub/d.js\",\"src/sub/e.txt\"]\n\nRunning \"files:list\" (files) task\ntarget list {\"sep\":\";\",\"z\":0}\n{\"src\":[\"src/c.css\"],\"dest\":\"list\",\"orig\":{\"src\":[\"src/c.css\",\"src/nope\"],\"dest\":\"list\"}}\nfilesSrc [\"src/c.css\"]\n\nDone.\n"
+  },
+  {
+   "argv": [
+    "files:expand",
+    "files:list:a:b",
+    "-v",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Initializing\nCommand-line options: --verbose, --no-color, --gruntfile=<dir>/Gruntfile.js\n\nReading \"Gruntfile.js\" Gruntfile...OK\n\nRegistering Gruntfile tasks.\nInitializing config...OK\nLoading \"Gruntfile.js\" tasks...OK\n+ files\n\nRunning tasks: files:expand, files:list:a:b\n\nRunning \"files:expand\" (files) task\nVerifying property files.expand exists in config...OK\nFiles: src/a.js -> out/exp/a.min.js\nFiles: src/b.js -> out/exp/b.min.js\nFiles: src/sub/d.js -> out/exp/sub/d.min.js\nOptions: sep=\";\", z=0, flag\ntarget expand {\"sep\":\";\",\"z\":0,\"flag\":true}\n{\"src\":[\"src/a.js\"],\"dest\":\"out/exp/a.min.js\",\"orig\":{\"expand\":true,\"cwd\":\"src/\",\"src\":[\"**/*.js\"],\"dest\":\"out/exp/\",\"ext\":\".min.js\"}}\n{\"src\":[\"src/b.js\"],\"dest\":\"out/exp/b.min.js\",\"orig\":{\"expand\":true,\"cwd\":\"src/\",\"src\":[\"**/*.js\"],\"dest\":\"out/exp/\",\"ext\":\".min.js\"}}\n{\"src\":[\"src/sub/d.js\"],\"dest\":\"out/exp/sub/d.min.js\",\"orig\":{\"expand\":true,\"cwd\":\"src/\",\"src\":[\"**/*.js\"],\"dest\":\"out/exp/\",\"ext\":\".min.js\"}}\nfilesSrc [\"src/a.js\",\"src/b.js\",\"src/sub/d.js\"]\n\nRunning \"files:list:a:b\" (files) task\nVerifying property files.list exists in config...OK\nFiles: src/c.css -> list\nOptions: sep=\";\", z=0\ntarget list {\"sep\":\";\",\"z\":0}\n{\"src\":[\"src/c.css\"],\"dest\":\"list\",\"orig\":{\"src\":[\"src/c.css\",\"src/nope\"],\"dest\":\"list\"}}\nfilesSrc [\"src/c.css\"]\n\nDone.\n"
+  },
+  {
+   "argv": [
+    "files:_hidden",
+    "--no-color"
+   ],
+   "code": 3,
+   "out": "Running \"files:_hidden\" (files) task\nWarning: Invalid target \"_hidden\" specified. Use --force to continue.\n\nAborted due to warnings.\n"
+  },
+  {
+   "argv": [
+    "files:missing",
+    "--force",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Running \"files:missing\" (files) task\nVerifying property files.missing exists in config...ERROR\n>> Unable to process task.\nWarning: Required config property \"files.missing\" missing. Used --force, continuing.\n\nDone, but with warnings.\n"
+  }
+ ],
+ "help": [
+  {
+   "argv": [
+    "--help",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Grunt: The JavaScript Task Runner (v1.6.3)\n\nUsage\n grunt [options] [task [task ...]]\n\nOptions\n    --help, -h  Display this help text.                                        \n    --base, -b  Specify an alternate base path. By default, all file paths are \n                relative to the Gruntfile. (grunt.file.setBase) *              \n    --no-color  Disable colored output.                                        \n   --gruntfile  Specify an alternate Gruntfile. By default, grunt looks in the \n                current or parent directories for the nearest Gruntfile.js or  \n                Gruntfile.coffee file.                                         \n   --debug, -d  Enable debugging mode for tasks that support it.               \n       --stack  Print a stack trace when exiting with a warning or fatal error.\n   --force, -f  A way to force your way past warnings. Want a suggestion? Don't\n                use this option, fix your code.                                \n       --tasks  Additional directory paths to scan for task and \"extra\" files. \n                (grunt.loadTasks) *                                            \n         --npm  Npm-installed grunt plugins to scan for task and \"extra\" files.\n                (grunt.loadNpmTasks) *                                         \n    --no-write  Disable writing files (dry run).                               \n --verbose, -v  Verbose mode. A lot more information output.                   \n --version, -V  Print the grunt version. Combine with --verbose for more info. \n  --completion  Output shell auto-completion rules. See the grunt-cli          \n                documentation for more information.                            \n --preload, -p  Specify a language interpreter to require first if you are     \n                writing your Gruntfile in a language Grunt doesn't support by  \n                default.                                                       \n\nOptions marked with * have methods exposed via the grunt API and should instead\nbe specified inside the Gruntfile wherever possible.\n\nAvailable tasks\n            10  Numeric.                                                       \n         build  Builds the project with a long description that has to wrap    \n                onto another line of the table.                                \n          lint  Custom multi task. *                                           \n    empty-info  Custom task. *                                                 \n       default  Alias for \"build\", \"lint\" tasks.                               \n\nTasks run in the order specified. Arguments may be passed to tasks that accept\nthem by using colons, like \"lint:files\". Tasks marked with * are \"multi tasks\"\nand will iterate over all sub-targets if no argument is specified.\n\nThe list of available tasks may change based on tasks directories or grunt\nplugins specified in the Gruntfile or via command-line options.\n\nFor more information, see http://gruntjs.com/\n"
+  },
+  {
+   "argv": [
+    "-h",
+    "-v",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "\nReading \"Gruntfile.js\" Gruntfile...OK\n\nRegistering Gruntfile tasks.\nLoading \"Gruntfile.js\" tasks...OK\n+ 10, build, default, empty-info, lint\nGrunt: The JavaScript Task Runner (v1.6.3)\n\nUsage\n grunt [options] [task [task ...]]\n\nOptions\n    --help, -h  Display this help text.                                        \n    --base, -b  Specify an alternate base path. By default, all file paths are \n                relative to the Gruntfile. (grunt.file.setBase) *              \n    --no-color  Disable colored output.                                        \n   --gruntfile  Specify an alternate Gruntfile. By default, grunt looks in the \n                current or parent directories for the nearest Gruntfile.js or  \n                Gruntfile.coffee file.                                         \n   --debug, -d  Enable debugging mode for tasks that support it.               \n       --stack  Print a stack trace when exiting with a warning or fatal error.\n   --force, -f  A way to force your way past warnings. Want a suggestion? Don't\n                use this option, fix your code.                                \n       --tasks  Additional directory paths to scan for task and \"extra\" files. \n                (grunt.loadTasks) *                                            \n         --npm  Npm-installed grunt plugins to scan for task and \"extra\" files.\n                (grunt.loadNpmTasks) *                                         \n    --no-write  Disable writing files (dry run).                               \n --verbose, -v  Verbose mode. A lot more information output.                   \n --version, -V  Print the grunt version. Combine with --verbose for more info. \n  --completion  Output shell auto-completion rules. See the grunt-cli          \n                documentation for more information.                            \n --preload, -p  Specify a language interpreter to require first if you are     \n                writing your Gruntfile in a language Grunt doesn't support by  \n                default.                                                       \n\nOptions marked with * have methods exposed via the grunt API and should instead\nbe specified inside the Gruntfile wherever possible.\n\nAvailable tasks\n            10  Numeric.                                                       \n         build  Builds the project with a long description that has to wrap    \n                onto another line of the table.                                \n          lint  Custom multi task. *                                           \n    empty-info  Custom task. *                                                 \n       default  Alias for \"build\", \"lint\" tasks.                               \n\nTasks run in the order specified. Arguments may be passed to tasks that accept\nthem by using colons, like \"lint:files\". Tasks marked with * are \"multi tasks\"\nand will iterate over all sub-targets if no argument is specified.\n\nThe list of available tasks may change based on tasks directories or grunt\nplugins specified in the Gruntfile or via command-line options.\n\nFor more information, see http://gruntjs.com/\n"
+  }
+ ],
+ "queue": [
+  {
+   "argv": [],
+   "code": 0,
+   "out": ">> Cannot rename missing \"missing\" task.\n\nRunning \"a\" task\na [] {}\n\nRunning \"b:1\" (b) task\nb b:1\n\nRunning \"c:x\" (c) task\nc c:x\n\nRunning \"c\" task\nc c\n\nRunning \"x:y:z\" (x:y) task\nx:y [\"z\"]\n\nDone.\n"
+  },
+  {
+   "argv": [
+    "a:p\\:q:r",
+    "c",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": ">> Cannot rename missing \"missing\" task.\n\nRunning \"a:p\\:q:r\" (a) task\na [\"p:q\",\"r\"] {\"p:q\":true,\"r\":true}\n\nRunning \"b:1\" (b) task\nb b:1\n\nRunning \"c:x\" (c) task\nc c:x\n\nRunning \"c\" task\nc c\n\nRunning \"c\" task\nc c\n\nDone.\n"
+  },
+  {
+   "argv": [
+    "fails",
+    "throws",
+    "async",
+    "c",
+    "needs",
+    "--force",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": ">> Cannot rename missing \"missing\" task.\n\nRunning \"fails\" task\nWarning: Task \"fails\" failed. Used --force, continuing.\n\nRunning \"throws\" task\nWarning: boom Used --force, continuing.\n\nRunning \"async\" task\nlater\nWarning: Task \"async\" failed. Used --force, continuing.\n\nRunning \"c\" task\nc c\n\nRunning \"needs\" task\nc ok\nWarning: Required task \"fails\" failed. Used --force, continuing.\n\nDone, but with warnings.\n"
+  },
+  {
+   "argv": [
+    "str:c",
+    "nope",
+    "stop",
+    "c",
+    "--force",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": ">> Cannot rename missing \"missing\" task.\nWarning: Task \"nope\" not found. Used --force, continuing.\n\nRunning \"c\" task\nc c\n\nRunning \"c\" task\nc c\n\nRunning \"stop\" task\n\nDone, but with warnings.\n"
+  },
+  {
+   "argv": [
+    "throws",
+    "c",
+    "--no-color"
+   ],
+   "code": 3,
+   "out": ">> Cannot rename missing \"missing\" task.\n\nRunning \"throws\" task\nWarning: boom Use --force to continue.\n\nAborted due to warnings.\n"
+  },
+  {
+   "argv": [
+    "c",
+    "-v",
+    "--no-color"
+   ],
+   "code": 0,
+   "out": "Initializing\nCommand-line options: --verbose, --no-color, --gruntfile=<dir>/Gruntfile.js\n\nReading \"Gruntfile.js\" Gruntfile...OK\n\nRegistering Gruntfile tasks.\n>> Cannot rename missing \"missing\" task.\nLoading \"Gruntfile.js\" tasks...OK\n+ a, async, b, c, default, fails, needs, stop, str, throws, x:y\n\nRunning tasks: c\n\nRunning \"c\" task\nc c\n\nDone.\n"
+  }
+ ]
+}

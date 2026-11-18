@@ -1,0 +1,29 @@
+name: Tests
+
+on: [push, pull_request]
+
+jobs:
+  run:
+    name: Go ${{ matrix.go }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ['1.27']
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v6
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: ${{ matrix.go }}
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Run tests
+        run: go test ./...

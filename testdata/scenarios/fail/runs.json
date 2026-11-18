@@ -1,0 +1,1 @@
+[["warn", "--no-color"], ["warn", "errors", "--force", "--no-color"], ["fatal", "--no-color"], ["--no-color"], ["errors", "--no-color", "--stack"]]

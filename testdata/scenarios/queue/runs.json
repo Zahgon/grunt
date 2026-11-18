@@ -1,0 +1,1 @@
+[[], ["a:p\\:q:r", "c", "--no-color"], ["fails", "throws", "async", "c", "needs", "--force", "--no-color"], ["str:c", "nope", "stop", "c", "--force", "--no-color"], ["throws", "c", "--no-color"], ["c", "-v", "--no-color"]]
